@@ -8,11 +8,11 @@
 <script>
 window.onload=function(){
 	var smallimg = document.getElementById("smallimg");
-	var smaLi=smallimg.getElementsByTagName("li");
+	var smaLi = smallimg.getElementsByTagName("li");
 	
-	var bigimg = document.getElementById("smallimg");
-	var bigLi=bigimg.getElementsByTagName("li");
-
+	var bigimg = document.getElementById("bigimg");
+	var bigLi = bigimg.getElementsByTagName("li");
+	
 
 	var btn1 = document.getElementById("pre");
 	var btn2 = document.getElementById("next");
@@ -33,12 +33,33 @@ window.onload=function(){
 		starMover(btn2, "opacity", 0) ;	
 	}
 	
+	var nowIndex = 2;
+	var now=0;
 	for(var i=0; i<smaLi.length; i++){
+		
+		
 		smaLi[i].onmouseover=function(){
 			starMover(this, "opacity", 100);	
 		}
 		smaLi[i].onmouseout=function(){
-			starMover(this, "opacity", 30);	
+			if(this.index!=now){
+				starMover(this, "opacity", 30);		
+			}
+		}
+		
+		smaLi[i].index=i;
+		smaLi[i].onclick=function(){
+				
+			if(this.index==now)return;
+			now=this.index;
+			bigLi[now].style.zIndex=nowIndex++;
+			for(var i=0; i<smaLi.length; i++){
+				starMover(smaLi[i], "opacity", 30);	
+			}
+			starMover(smaLi[now], "opacity", 100);
+			bigLi[this.index].style.height=0;
+			starMover(bigLi[this.index], "height", 800)
+			 
 		}		
 	}
 	
@@ -54,22 +75,22 @@ window.onload=function(){
   <div id="mark-left"></div>
   <div id="mark-right"></div>
     <ul>
-      <li><img src="img/1.jpg" width="800" height="800" /></li>
-      <li><img src="img/1.jpg" width="800" height="800" /></li>
-      <li><img src="img/1.jpg" width="800" height="800" /></li>
-      <li><img src="img/1.jpg" width="800" height="800" /></li>
-      <li><img src="img/1.jpg" width="800" height="800" /></li>
-      <li><img src="img/1.jpg" width="800" height="800" /></li>
+      <li id="li1" style="z-index:1"><img src="img/1.jpg" width="800" height="800" /></li>
+      <li style="z-index:0"><img src="img/2.jpg" width="800" height="800" /></li>
+      <li><img src="img/3.jpg" width="800" height="800" /></li>
+      <li><img src="img/4.jpg" width="800" height="800" /></li>
+      <li><img src="img/5.jpg" width="800" height="800" /></li>
+      <li><img src="img/6.jpg" width="800" height="800" /></li>
     </ul>
   </div>
   <div id="smallimg">
     <ul>
       <li><img src="img/1.jpg" width="200" height="200" /></li>
-      <li><img src="img/1.jpg" width="200" height="200" /></li>
-      <li><img src="img/1.jpg" width="200" height="200" /></li>
-      <li><img src="img/1.jpg" width="200" height="200" /></li>
-      <li><img src="img/1.jpg" width="200" height="200" /></li>
-      <li><img src="img/1.jpg" width="200" height="200" /></li>
+      <li><img src="img/2.jpg" width="200" height="200" /></li>
+      <li><img src="img/3.jpg" width="200" height="200" /></li>
+      <li><img src="img/4.jpg" width="200" height="200" /></li>
+      <li><img src="img/5.jpg" width="200" height="200" /></li>
+      <li><img src="img/6.jpg" width="200" height="200" /></li>
     </ul>
   </div>
 </div>
