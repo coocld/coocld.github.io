@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="style.css" />
+<title>无标题文档</title>
+<script src="mover.js"></script>
+<script>
+window.onload=function(){
+	var smallimg = document.getElementById("smallimg");
+	var smaLi=smallimg.getElementsByTagName("li");
+	
+	var bigimg = document.getElementById("smallimg");
+	var bigLi=bigimg.getElementsByTagName("li");
+
+
+	var btn1 = document.getElementById("pre");
+	var btn2 = document.getElementById("next");
+	
+	var mark_l = document.getElementById("mark-left");
+	var mark_r = document.getElementById("mark-right");
+	
+	btn1.onmouseover=mark_l.onmouseover=function(){
+		starMover(btn1, "opacity", 100) ;	
+	}
+	btn1.onmouseout=mark_l.onmouseout=function(){
+		starMover(btn1, "opacity", 0) ;	
+	}
+	btn2.onmouseover=mark_r.onmouseover=function(){
+		starMover(btn2, "opacity", 100) ;	
+	}
+	btn2.onmouseout=mark_r.onmouseout=function(){
+		starMover(btn2, "opacity", 0) ;	
+	}
+	
+	for(var i=0; i<smaLi.length; i++){
+		smaLi[i].onmouseover=function(){
+			starMover(this, "opacity", 100);	
+		}
+		smaLi[i].onmouseout=function(){
+			starMover(this, "opacity", 30);	
+		}		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+<div id="flash">
+  <div id="bigimg">
+  <a href="javascript:;" id="pre"></a> 
+  <a href="javascript:;" id="next"></a>
+  <div id="mark-left"></div>
+  <div id="mark-right"></div>
+    <ul>
+      <li><img src="img/1.jpg" width="800" height="800" /></li>
+      <li><img src="img/1.jpg" width="800" height="800" /></li>
+      <li><img src="img/1.jpg" width="800" height="800" /></li>
+      <li><img src="img/1.jpg" width="800" height="800" /></li>
+      <li><img src="img/1.jpg" width="800" height="800" /></li>
+      <li><img src="img/1.jpg" width="800" height="800" /></li>
+    </ul>
+  </div>
+  <div id="smallimg">
+    <ul>
+      <li><img src="img/1.jpg" width="200" height="200" /></li>
+      <li><img src="img/1.jpg" width="200" height="200" /></li>
+      <li><img src="img/1.jpg" width="200" height="200" /></li>
+      <li><img src="img/1.jpg" width="200" height="200" /></li>
+      <li><img src="img/1.jpg" width="200" height="200" /></li>
+      <li><img src="img/1.jpg" width="200" height="200" /></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
