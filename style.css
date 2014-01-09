@@ -13,4 +13,4 @@ ul, li{ list-style:none;}
 #bigimg li{ width:800px; height:800px; overflow:hidden; position:absolute;}
 #smallimg{ width:800px; height:200px;margin-top:5px; position:relative; overflow:hidden; }
 #smallimg ul{ position:absolute; height:200px; left:0px;}
-#smallimg li{ width:200px; height:200px; overflow:hidden; float:left; filter:alpha(opactity:30); opacity:0.3;}
+#smallimg li{ width:200px; height:200px; overflow:hidden; float:left; filter:alpha(opactity:30); opacity:0.3;} 
