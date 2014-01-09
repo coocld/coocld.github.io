@@ -7,11 +7,16 @@
 <script src="mover.js"></script>
 <script>
 window.onload=function(){
+	var flash = document.getElementById("flash");
+	
 	var smallimg = document.getElementById("smallimg");
 	var smaLi = smallimg.getElementsByTagName("li");
 	
 	var bigimg = document.getElementById("bigimg");
 	var bigLi = bigimg.getElementsByTagName("li");
+	
+	var smaUl = smallimg.getElementsByTagName("ul")[0];
+	 
 	
 
 	var btn1 = document.getElementById("pre");
@@ -19,6 +24,8 @@ window.onload=function(){
 	
 	var mark_l = document.getElementById("mark-left");
 	var mark_r = document.getElementById("mark-right");
+	
+	smaUl.style.width=smaLi.length*smaLi[0].offsetWidth+"px";
 	
 	btn1.onmouseover=mark_l.onmouseover=function(){
 		starMover(btn1, "opacity", 100) ;	
@@ -32,12 +39,44 @@ window.onload=function(){
 	btn2.onmouseout=mark_r.onmouseout=function(){
 		starMover(btn2, "opacity", 0) ;	
 	}
-	
+	function tab(){
+			bigLi[now].style.zIndex=nowIndex++;
+			for(var i=0; i<smaLi.length; i++){
+				starMover(smaLi[i], "opacity", 30);	
+			}
+				starMover(smaLi[now], "opacity", 100);
+				bigLi[now].style.height=0;
+				starMover(bigLi[now], "height", 800);	
+				if(now==0){
+						starMover(smaUl, "left", 0);
+				}else if(now==smaLi.length-1){
+						starMover(smaUl, "left", -(now-3)*smaLi[0].offsetWidth);
+				}else if(now==smaLi.length-2){
+						starMover(smaUl, "left", -(now-2)*smaLi[0].offsetWidth);
+				}else{
+						starMover(smaUl, "left", -(now-1)*smaLi[0].offsetWidth);
+				}
+			 
+	}
+btn1.onclick=function(){
+		now--;
+		if(now==-1){
+			now=smaLi.length-1;	
+		}	
+		tab();
+}
+btn2.onclick=function(){
+		now++;
+		if(now==smaLi.length){
+			now=0;	
+		}
+		tab();
+}
 	var nowIndex = 2;
 	var now=0;
 	for(var i=0; i<smaLi.length; i++){
 		
-		
+		smaLi[0].style.opacity=100;
 		smaLi[i].onmouseover=function(){
 			starMover(this, "opacity", 100);	
 		}
@@ -50,20 +89,23 @@ window.onload=function(){
 		smaLi[i].index=i;
 		smaLi[i].onclick=function(){
 				
-			if(this.index==now)return;
+		if(this.index==now)return;
 			now=this.index;
-			bigLi[now].style.zIndex=nowIndex++;
-			for(var i=0; i<smaLi.length; i++){
-				starMover(smaLi[i], "opacity", 30);	
-			}
-			starMover(smaLi[now], "opacity", 100);
-			bigLi[this.index].style.height=0;
-			starMover(bigLi[this.index], "height", 800)
+			tab();
 			 
-		}		
+		};		
 	}
 	
+	var timer = setInterval(btn2.onclick, 2000);
+	
+	flash.onmouseover=function(){
+		clearInterval(timer);	
+	}
+	flash.onmouseout=function(){
+		timer = setInterval(btn2.onclick, 2000);	
+	}
 }
+
 </script>
 </head>
 
@@ -84,7 +126,7 @@ window.onload=function(){
     </ul>
   </div>
   <div id="smallimg">
-    <ul>
+    <ul id="smaUl">
       <li><img src="img/1.jpg" width="200" height="200" /></li>
       <li><img src="img/2.jpg" width="200" height="200" /></li>
       <li><img src="img/3.jpg" width="200" height="200" /></li>
